@@ -31,7 +31,7 @@ td:hover{
 <h1>게시판</h1>
 <hr>
 
-<hr>
+
 <table>
 <tr>
 	<th>번호</th>

@@ -110,6 +110,29 @@ public class BoardDaoImpl implements BoardDao{
 	public void updateHit(Board board) {
 		conn = DBConn.getConnection();
 		
+		String sql = "";
+		sql += "UPDATE board SET hit = hit + 1";
+		sql += " WHERE boardno = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1,  board.getBoardno());
+			
+			rs = ps.executeQuery();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				
+				if(ps != null) ps.close();
+				if(rs != null) rs.close();
+				// ---------------------
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

@@ -16,4 +16,6 @@ public interface BoardService {
 	
 	public Board view(Board board);
 	
+	public Board hitplus(Board board);
+	
 }

@@ -30,8 +30,14 @@ public class BoardServiceImpl implements BoardService{
 	}
 	@Override
 	public Board view(Board board) {
-	
+		boardDao.updateHit(board);
 		return boardDao.selectBoardByBoardno(board);
+	}
+	
+	@Override
+	public Board hitplus(Board board) {
+		
+		return null;
 	}
 	
 }
