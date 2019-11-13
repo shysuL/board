@@ -43,8 +43,13 @@ td:hover{
 </tr>
 <% for(int i = 0 ; i < bList.size() ; i++){%>
 <tr>
-	<td><%=bList.get(i).getBoardno() %></td>
-	<td><%=bList.get(i).getTitle() %></td>
+	<td>
+		
+	<%=bList.get(i).getBoardno() %></td>
+	<td>
+		<a href="/board/view?bno=<%=bList.get(i).getBoardno() %>">
+		<%=bList.get(i).getTitle() %></a>
+	</td>
 	<td><%=bList.get(i).getId() %></td>
 	<td><%=bList.get(i).getContent() %></td>
 	<td><%=bList.get(i).getHit() %></td>
