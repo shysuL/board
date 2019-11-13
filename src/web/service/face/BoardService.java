@@ -1,5 +1,15 @@
 package web.service.face;
 
-public interface BoardService {
+import java.util.List;
 
+import web.dto.Board;
+
+public interface BoardService {
+	
+
+	
+	public List<Board> getList() ;
+
+	
+	
 }
