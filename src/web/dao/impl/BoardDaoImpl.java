@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import util.Paging;
 import web.dbutil.DBConn;
 import web.dao.face.BoardDao;
 import web.dto.Board;
@@ -133,6 +133,95 @@ public class BoardDaoImpl implements BoardDao{
 				e.printStackTrace();
 			}
 		}
+	}
+
+	@Override
+	public int selectCntAll() {
+		conn = DBConn.getConnection(); // DB연결
+
+		// 수행할 SQL 쿼리
+		String sql = "";
+		sql += "SELECT count(*)";
+		sql += " FROM board";
+		
+		
+		// 최종 결과 변수
+		int cnt = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql); // 수행 객체 얻기
+			
+			rs = ps.executeQuery(); // SQL 수행 결과 얻기
+
+			// SQL 수행결과 처리
+			while (rs.next()) {
+				cnt = rs.getInt(1);
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				//    
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+				// ---------------------
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+			
+			
+		return cnt;
+	}
+
+	@Override
+	public List<Board> selectAll(Paging paging) {
+		conn = DBConn.getConnection(); // DB연결
+
+		// 수행할 SQL 쿼리
+		String sql = "";
+		sql += " ";
+		sql += "  ";
+		
+		
+		// 최종 결과 변수
+		List list = new ArrayList();
+		
+		try {
+			ps = conn.prepareStatement(sql); // 수행 객체 얻기
+			
+			rs = ps.executeQuery(); // SQL 수행 결과 얻기
+
+			// SQL 수행결과 처리
+			while (rs.next()) {
+				Board board = new Board();
+				
+				board.setBoardno(rs.getInt("boardno"));
+				board.setTitle(rs.getString("title"));
+				board.setId(rs.getString("ID"));
+				board.setContent(rs.getString("content"));
+				board.setHit(rs.getInt("hit"));
+				board.setWrittendate(rs.getDate("WrittenDate"));
+				
+				list.add(board);
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				//    
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+				// ---------------------
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+			
+			
+		return list;
 	}
 
 }

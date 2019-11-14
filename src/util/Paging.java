@@ -62,7 +62,7 @@ private void makePaging() {
 	
 	// 총 페이지수 계산
 	totalPage = totalCount / listCount;
-	if(totalCount % listCount > 0 ) totalCount++;
+	if(totalCount % listCount > 0 ) totalPage++;
 	
 	// 현재 페이지 보정
 	// (총 페이지 번호보다 현재 페이지번호가 높을 때 총 페이지 번호로 고정
