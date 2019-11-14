@@ -33,7 +33,7 @@ src = https://code.jquery.com/jquery-2.2.4.min.js></script>
 	background : #ccf;
 }
 
-#footer {
+#footer h1 {
 	margin : 0; /* background를 전체에 적용하기 위한 설정 */
 	padding: 20px 0; /* h1태그의 높이 지정 */
 }

@@ -28,7 +28,7 @@ tr td:not(:first-child), tr th:not(:first-child){
 
 <div class ="container">
 
-<h1>게시판</h1>
+<h1>게시판 <small>ㅎ ㅎ ㅎ </small></h1>
 <hr>
 
 
