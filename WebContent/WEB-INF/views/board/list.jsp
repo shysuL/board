@@ -3,36 +3,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<% List<Board> bList = (List) request.getAttribute("list"); %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style type = "text/css">
-table{
-	border-collapse: collapse;
-	border:1px solid #ccc;
-}
-td{
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	padding : 5px 10px;
-	background: ivory;
-}
-td:hover{
-	background: #ccf;
-}
+<%-- <% List<Board> bList = (List) request.getAttribute("list"); %> --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-</style>
-</head>
-<body>
+
+
+<jsp:include page = "/WEB-INF/views/layout/header.jsp" />
+
+<div class ="container">
 
 <h1>게시판</h1>
 <hr>
 
 
-<table>
+<table class = "table">
 <tr>
 	<th>번호</th>
 	<th>제목</th>
@@ -41,24 +26,31 @@ td:hover{
 	<th>조회수</th>
 	<th>작성일</th>
 </tr>
-<% for(int i = 0 ; i < bList.size() ; i++){%>
+<%-- <% for(int i = 0 ; i < bList.size() ; i++){%> --%>
+<c:forEach items="${list }" var="board">
 <tr>
 	<td>
-		
-	<%=bList.get(i).getBoardno() %></td>
+		${board.boardno }
+<%-- 	<%=bList.get(i).getBoardno() %></td> --%>
 	<td>
-		<a href="/board/view?bno=<%=bList.get(i).getBoardno() %>">
-		<%=bList.get(i).getTitle() %></a>
+<%-- 		<a href="/board/view?bno=<%=bList.get(i).getBoardno() %>"> --%>
+<%-- 		<%=bList.get(i).getTitle() %></a> --%>
+		<a href="/board/view?bno=${board.boardno }">
+		${board.title }</a>
 	</td>
-	<td><%=bList.get(i).getId() %></td>
-	<td><%=bList.get(i).getContent() %></td>
-	<td><%=bList.get(i).getHit() %></td>
-	<td><%=bList.get(i).getWrittendate() %></td>
-
+<%-- 	<td><%=bList.get(i).getId() %></td> --%>
+<%-- 	<td><%=bList.get(i).getContent() %></td> --%>
+<%-- 	<td><%=bList.get(i).getHit() %></td> --%>
+<%-- 	<td><%=bList.get(i).getWrittendate() %></td> --%>
+	<td>${board.id }</td>
+	<td>${board.content }</td>
+	<td>${board.hit }</td>
+	<td><fmt:formatDate value="${board.writtendate }" pattern="yyyy-MM-dd"/></td>
 </tr>
-<%}%>
-
+<%-- <%}%> --%>
+</c:forEach>
 </table>
 
-</body>
-</html>
+</div><!--  .container -->
+
+<jsp:include page = "/WEB-INF/views/layout/footer.jsp" />

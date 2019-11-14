@@ -27,9 +27,12 @@ td:hover{
 </style>
 </head>
 <body>
+
+<jsp:include page = "/WEB-INF/views/layout/header.jsp" />
+
 <h1>게시글 상세 내용</h1>
 <hr>
-<table>
+<table class = "table">
 	<tr>
 		<td><%= board.getBoardno() %> </td>
 		<td><h2><%= board.getTitle() %></h2> </td>	
@@ -68,6 +71,7 @@ td:hover{
 
 <hr>
 
+<jsp:include page = "/WEB-INF/views/layout/footer.jsp" />
 
 </body>
 </html>
