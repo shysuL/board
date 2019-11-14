@@ -11,20 +11,36 @@
 
 <jsp:include page = "/WEB-INF/views/layout/header.jsp" />
 
+<style type="text/css">
+table, th{
+	text-align: center;
+}
+/* 두번째자식(제목)은 왼쪽정렬 */
+tr td:nth-child(2){
+	text-align: left;
+}
+/* 첫번째자식이 아닌 tr td에 세로 선 입력 */
+tr td:not(:first-child), tr th:not(:first-child){
+	border-left : 3px solid white;
+}
+
+</style>
+
 <div class ="container">
 
 <h1>게시판</h1>
 <hr>
 
 
-<table class = "table">
-<tr>
-	<th>번호</th>
-	<th>제목</th>
-	<th>ID</th>
-	<th>내용</th>
-	<th>조회수</th>
-	<th>작성일</th>
+
+<table class = "table table-hover table-striped table table-condensed">
+<tr class="success">
+	<th style = "width:10%">번호</th>
+	<th style = "width:50%">제목</th>
+	<th style = "width:20%">ID</th>
+<!-- 	<th style = "width:15%">내용</th> -->
+	<th style = "width:10%">조회수</th>
+	<th style = "width:10%">작성일</th>
 </tr>
 <%-- <% for(int i = 0 ; i < bList.size() ; i++){%> --%>
 <c:forEach items="${list }" var="board">
@@ -43,7 +59,7 @@
 <%-- 	<td><%=bList.get(i).getHit() %></td> --%>
 <%-- 	<td><%=bList.get(i).getWrittendate() %></td> --%>
 	<td>${board.id }</td>
-	<td>${board.content }</td>
+<%-- 	<td>${board.content }</td> --%>
 	<td>${board.hit }</td>
 	<td><fmt:formatDate value="${board.writtendate }" pattern="yyyy-MM-dd"/></td>
 </tr>
