@@ -181,15 +181,26 @@ public class BoardDaoImpl implements BoardDao{
 
 		// 수행할 SQL 쿼리
 		String sql = "";
-		sql += " ";
-		sql += "  ";
-		
-		
+		sql += "SELECT * FROM("  ;
+		sql += " SELECT rownum rnum, B.* FROM(" ;
+		sql +=	" SELECT " ; 
+		sql +=	" boardno, title, id, content, hit, writtendate" ;
+		sql +=	" FROM board"; 
+		sql +=	" ORDER BY boardno DESC" ;
+		sql +=	" ) B"  ;
+		sql +=	" ORDER BY rnum" ;
+		sql +=	" ) BOARD" ;
+		sql +=	" WHERE rnum BETWEEN ? AND ? ";
+
+
 		// 최종 결과 변수
 		List list = new ArrayList();
 		
 		try {
 			ps = conn.prepareStatement(sql); // 수행 객체 얻기
+			
+			ps.setInt(1,  paging.getStartNo());
+			ps.setInt(2,  paging.getEndNo());
 			
 			rs = ps.executeQuery(); // SQL 수행 결과 얻기
 

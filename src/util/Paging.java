@@ -112,10 +112,10 @@ public int getPageCount() {
 public void setPageCount(int pageCount) {
 	this.pageCount = pageCount;
 }
-public int getStarPage() {
+public int getStartPage() {
 	return startPage;
 }
-public void setStarPage(int starPage) {
+public void setStartPage(int starPage) {
 	this.startPage = starPage;
 }
 public int getEndPage() {
@@ -130,10 +130,10 @@ public int getStartNo() {
 public void setStartNo(int startNo) {
 	this.startNo = startNo;
 }
-public int getEndNO() {
+public int getEndNo() {
 	return endNo;
 }
-public void setEndNO(int endNo) {
+public void setEndNo(int endNo) {
 	this.endNo = endNo;
 }
 @Override

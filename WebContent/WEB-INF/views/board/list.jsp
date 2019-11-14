@@ -67,6 +67,9 @@ tr td:not(:first-child), tr th:not(:first-child){
 </c:forEach>
 </table>
 
+<jsp:include page = "/WEB-INF/views/layout/paging.jsp" />
 </div><!--  .container -->
+
+
 
 <jsp:include page = "/WEB-INF/views/layout/footer.jsp" />

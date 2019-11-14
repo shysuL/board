@@ -35,7 +35,7 @@ public class BoardListController extends HttpServlet {
 		
 		
 		// 게시글 리스트
-		List<Board> boardList = boardservice.getList();
+		List<Board> boardList = boardservice.getList(paging);
 		
 		req.setAttribute("list", boardList);
 		
