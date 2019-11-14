@@ -19,10 +19,10 @@ td{
 	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
 	padding : 5px 10px;
-	background: ivory;
+	background: #ccf;
 }
 td:hover{
-	background: #ccf;
+	background: ivory;
 }     
 </style>
 </head>
