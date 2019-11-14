@@ -30,7 +30,7 @@ public class BoardListController extends HttpServlet {
 		Paging paging = boardService.getPasing(req);
 		System.out.println("BoardListController : " + paging);
 		// Paging 객체를 MODEL값으로 지정
-		req.setAttribute("Paging", paging);
+		req.setAttribute("paging", paging);
 		
 		
 		
