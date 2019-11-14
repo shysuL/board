@@ -26,7 +26,7 @@ public class BoardDaoImpl implements BoardDao{
 		// 수행할 SQL 쿼리
 		String sql = "";
 		sql += "SELECT boardno, title, id, content, hit, writtendate FROM board";
-		sql += " ORDER BY boardno";
+		sql += " ORDER BY boardno DESC";
 		
 		List list = new ArrayList();
 		
