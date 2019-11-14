@@ -23,7 +23,7 @@ td{
 }
 td:hover{
 	background: #ccf;
-}
+}     
 </style>
 </head>
 <body>
