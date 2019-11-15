@@ -27,6 +27,13 @@ public interface BoardService {
 
 	public Board getBoardno(HttpServletRequest req);
 	
+	
+	/**
+	 * 상세보기 게시글 조회
+	 * 
+	 * @param viewBoard - 상세보기할 boardno를 가진 객체
+	 * @return Board - 상세보기할 게시글 조회 결과
+	 */
 	public Board view(Board board);
 	
 	public Board hitplus(Board board);

@@ -22,8 +22,19 @@ public interface BoardDao {
 	 */
 	public List<Board> selectAll(Paging paging);
 	
+	/**
+	 * 상세보기 게시글 조회
+	 * 
+	 * @param viewBoard - 조회 대상
+	 * @return Board - 게시글 조회 결과
+	 */
 	public Board selectBoardByBoardno(Board board);
-	
+
+	/**
+	 * 조회되는 게시글의 조회수 +1
+	 * 
+	 * @param viewBoard - 조회 대상
+	 */
 	public void updateHit(Board board);
 
 	/**

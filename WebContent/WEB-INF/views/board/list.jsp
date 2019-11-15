@@ -24,11 +24,17 @@ tr td:not(:first-child), tr th:not(:first-child){
 	border-left : 3px solid white;
 }
 
+#main{
+ text-align: right;
+}
+
+
 </style>
 
 <div class ="container">
 
-<h1>게시판 <small>ㅎ ㅎ ㅎ </small></h1>
+<h1>게시판 <small>ㅎ ㅎ ㅎ </small></h1> 
+<div id = "main"><button><a href = "/main">메인</a></button></div>
 <hr>
 
 
