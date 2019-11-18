@@ -246,7 +246,7 @@ public class BoardDaoImpl implements BoardDao{
 		sql += " , id";
 		sql += " , content";
 		sql += " , hit)";
-		sql += " VALUES (board_seq.nextval,?,'test',?,0)" ;
+		sql += " VALUES (board_seq.nextval,?,?,?,0)" ;
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -254,8 +254,8 @@ public class BoardDaoImpl implements BoardDao{
 			// SQL쿼리의 ? 채우기
 			
 			ps.setString(1, board.getTitle() ); 
-//			ps.setString(2, board.getId() ); 
-			ps.setString(2, board.getContent() ); 
+			ps.setString(2, board.getId() ); 
+			ps.setString(3, board.getContent() ); 
 //			ps.setDate(5, board.getWrittendate() ); 
 			
 			

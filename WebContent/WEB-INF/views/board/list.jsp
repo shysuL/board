@@ -11,6 +11,21 @@
 
 <jsp:include page = "/WEB-INF/views/layout/header.jsp" />
 
+<script>
+$(document).ready(function() {
+	//로그인되어있지 않으면 글쓰기 페이지로 넘어가지 않음
+	//main으로 리다이렉트
+	$("#btnWrite").click(function() {
+		if(${empty login}){
+		$(location).attr("href", "/main");
+		} else{
+			$(location).attr("href", "/board/write");
+		}
+	});
+});
+</script>
+
+
 <style type="text/css">
 table, th{
 	text-align: center;
@@ -75,7 +90,7 @@ tr td:not(:first-child), tr th:not(:first-child){
 
 <jsp:include page = "/WEB-INF/views/layout/paging.jsp" />
 
-<div id = "main"><button><a href = "/board/write">글쓰기</a></button></div>
+<div id = "main"><button id = "btnWrite">글쓰기</button></div>
 
 
 </div><!--  .container -->

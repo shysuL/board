@@ -4,11 +4,13 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import util.Paging;
 import web.dao.face.BoardDao;
 import web.dao.impl.BoardDaoImpl;
 import web.dto.Board;
+import web.dto.Member;
 import web.service.face.BoardService;
 
 public class BoardServiceImpl implements BoardService{
@@ -68,6 +70,10 @@ public class BoardServiceImpl implements BoardService{
 	public Board writeParam(HttpServletRequest req) {
 		
 		Board board  = new Board();
+		HttpSession session = req.getSession();
+		
+		
+		
 		
 		String param = null;
 		try {
@@ -85,6 +91,10 @@ public class BoardServiceImpl implements BoardService{
 		if (param != null && !"".equals(param)) {
 			board.setContent(param);
 		}
+		
+		board.setId((String)session.getAttribute("userid"));
+		
+		
 		
 		return board;
 	}

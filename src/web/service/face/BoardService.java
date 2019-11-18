@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import util.Paging;
 import web.dto.Board;
+import web.dto.Member;
 
 public interface BoardService {
 	
@@ -48,7 +49,7 @@ public interface BoardService {
 	public Paging getPasing(HttpServletRequest req);
 		
 	
-	public Board writeParam(HttpServletRequest req);
+	public Board writeParam(HttpServletRequest req );
 	
 	public void write(Board board);
 	

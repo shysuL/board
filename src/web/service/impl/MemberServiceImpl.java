@@ -1,5 +1,7 @@
 package web.service.impl;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import web.dao.face.MemberDao;
@@ -17,6 +19,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		String param = null;
 				
+		
 		param = req.getParameter("userid");
 		if (param != null && !"".equals(param)) {
 			member.setUserid(param);
@@ -55,6 +58,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public void join(Member member) {
+		
 		memberDao.insert(member);
 	}
 
@@ -63,6 +67,12 @@ public class MemberServiceImpl implements MemberService{
 		Member member = new Member();
 		
 		String param = null;
+		
+		try {
+			req.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		
 		// userid
 		param = req.getParameter("userid");

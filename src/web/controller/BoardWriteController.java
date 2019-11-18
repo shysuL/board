@@ -36,13 +36,10 @@ public class BoardWriteController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		HttpSession session = req.getSession();
+		
+	
+		
 		Board board = boardService.writeParam(req);
-		
-//		Member member = new Member();
-//		member = (Member) session.getAttribute("userid");
-		
-//		memberService.getMemberByUserid(member);
-		
 		
 		boardService.write(board);
 		
