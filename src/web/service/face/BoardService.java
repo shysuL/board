@@ -48,4 +48,8 @@ public interface BoardService {
 	public Paging getPasing(HttpServletRequest req);
 		
 	
+	public Board writeParam(HttpServletRequest req);
+	
+	public void write(Board board);
+	
 }

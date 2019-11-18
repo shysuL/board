@@ -1,5 +1,6 @@
 package web.service.impl;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -62,6 +63,36 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<Board> getList(Paging paging) {
 		return boardDao.selectAll(paging);
+	}
+	@Override
+	public Board writeParam(HttpServletRequest req) {
+		
+		Board board  = new Board();
+		
+		String param = null;
+		try {
+			req.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		param = req.getParameter("title");
+		if (param != null && !"".equals(param)) {
+			board.setTitle(param);
+		}
+		
+		param = req.getParameter("content");
+		if (param != null && !"".equals(param)) {
+			board.setContent(param);
+		}
+		
+		return board;
+	}
+
+	
+	@Override
+	public void write(Board board) {
+		 boardDao.insert(board);
 	}
 	
 }

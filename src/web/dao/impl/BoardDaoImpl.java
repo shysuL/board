@@ -235,4 +235,45 @@ public class BoardDaoImpl implements BoardDao{
 		return list;
 	}
 
+	@Override
+	public void insert(Board board) {
+		conn = DBConn.getConnection(); // DB연결
+
+		// 수행할 SQL 쿼리
+		String sql = "";
+		sql += "INSERT INTO  board(boardno";
+		sql += " , title";
+		sql += " , id";
+		sql += " , content";
+		sql += " , hit)";
+		sql += " VALUES (board_seq.nextval,?,'test',?,0)" ;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			// SQL쿼리의 ? 채우기
+			
+			ps.setString(1, board.getTitle() ); 
+//			ps.setString(2, board.getId() ); 
+			ps.setString(2, board.getContent() ); 
+//			ps.setDate(5, board.getWrittendate() ); 
+			
+			
+			
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				
+				if(ps != null) ps.close();
+				// ---------------------
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+	}
+
 }

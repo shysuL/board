@@ -44,5 +44,7 @@ public interface BoardDao {
 	 */
 	public int selectCntAll();
 
+	
+	public void insert(Board board);
 
 }
