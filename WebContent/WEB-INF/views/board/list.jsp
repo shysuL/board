@@ -74,6 +74,10 @@ tr td:not(:first-child), tr th:not(:first-child){
 </table>
 
 <jsp:include page = "/WEB-INF/views/layout/paging.jsp" />
+
+<div id = "main"><button><a href = "/board/write">글쓰기</a></button></div>
+
+
 </div><!--  .container -->
 
 

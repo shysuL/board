@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
+				
+
+
 <style type="text/css">
 h1 {
 	text-align: center;
@@ -25,7 +28,7 @@ div {
 	text-align: center;
 	float: center;
 }
-</style type="text/css">
+</style >
 
 
 
@@ -34,63 +37,49 @@ div {
 <br>
 <br>
 <br>
-<h1>+ + 로그인 + +</h1>
-<hr>
-<div class="container">
-<form class="form-inline"
-	action="<%=response.encodeUrl("/member/login") %>" method="post">
-<fieldset style="width: 280px;">
+
+
+<article class="container">
+
+<form class="form-horizontal" action="<%=response.encodeUrl("/member/login") %>" method="post">
+<fieldset style="width: 320px;">
+  <div class="form-group">
+    <label for="inputText" class="col-sm-3 control-label">아이디</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="userid" name = "userid" placeholder="Email">
+    </div>
+  </div><br>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-3 control-label">비밀번호</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="userpw" name = "userpw"  placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-0 col-sm-10">
+      <button type="submit" class="btn btn-default">Log in</button>
+    </div>
+ 
+  </div>
 <div class="form-group">
-<legend> 로그인하기 </legend>
-</div>
-<table class=class = "table table-hover table-striped table table-condensed">
-<div class="form-group">
-<tr class="success">
-	<th style = "width:50%"></th>
-	<th style = "width:50%"></th>
-	
-</tr>
+    <div class="col-sm-offset-0 col-sm-10">
+      <button class="btn btn-default"><a href = "/member/join">회원가입</a></button>
+<button class="btn btn-default"><a href="/main">메인으로가기</a></button>
+  </div>
+  </div>
+  </fieldset>
+</form>
 
-<tr class="success">
-<td><label for="userid">아이디</label></td><td>
+</article>
 
-<input type="text" id="userid" name="userid" size="20"
-placeholder="아이디 입력" /></td>
-</tr>
-</div>
-<div class="form-group">
-<tr>
-<td><label for="userpw">비밀번호</label></td>
-<td><input type="password" id="userpw" name="userpw" size="20"
-placeholder="비밀번호 입력" /></td>
-</tr>
-</div>
-<div class="form-group">
-<tr>
-<tr>
-<td></td>
-<td> <div class="inp_chk"> <!-- 체크시 checked 추가 -->
-          <input type="checkbox" id="keepLogin" class="inp_radio"  name="keepLogin">
-          <label for="keepLogin" class="lab_g">
-<span class="img_top ico_check"></span>
-<span class="txt_lab">체크</span>
-  </label>
-        </div></td>
-</tr>
-<td></td>
-<td><button>로그인</button>
-<button><a href = "/member/join">회원가입</a></button></td>
-</tr>
-</div>
-			</table>
-
-		</fieldset>
-	</form>
-</div>
-<a href="/main"><button>메인으로가기</button></a>
-
-
-
-
-
+  <br><br><br>
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

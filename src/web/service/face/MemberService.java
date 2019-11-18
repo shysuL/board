@@ -12,4 +12,7 @@ public interface MemberService {
 	
 	public Member getMemberByUserid(Member member);
 	
+	public void join(Member member);
+	
+	public Member getMemberParam(HttpServletRequest req);
 }

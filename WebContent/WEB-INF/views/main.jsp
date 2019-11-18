@@ -13,6 +13,11 @@ label{
 	text-align: left;
 }
 
+.container{
+	justify-content:right;
+ 	align-items : right; 
+ 	text-align: right; 
+}
 </style>
 
 <div><h1> MAIN </h1></div>
@@ -23,7 +28,7 @@ label{
 
 <c:choose>
 <c:when test="${not empty login }" >
-	<h3>${sessionScope.userid }</h3>
+	<h3>${sessionScope.usernick }</h3>
 	<button onclick="location.href='/member/logout' ">로그아웃</button>
 	<br><hr><br>
 	<button onclick="location.href='/board/list' ">게시판</button>
@@ -31,9 +36,10 @@ label{
 <c:otherwise>
 <!-- <form action="/login/login" method="post"> -->
 
+<div class = "container">
 <button><a href = "/member/login">로그인</a></button>    
 <button><a href = "/member/join">회원가입</a></button>
-
+</div>
 
 <form action="<%=response.encodeUrl("/login/login") %>" method="post">
 <!-- <form action="/login/login;jsessionid=<%=session.getId() %>" method="post"> -->

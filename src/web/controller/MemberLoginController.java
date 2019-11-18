@@ -38,15 +38,18 @@ public class MemberLoginController extends HttpServlet {
 		
 		member = memberService.getLoginMember(req);
 		
+		
 		if(memberService.login(member) == true) {
 			String userid = req.getParameter("userid");
-			String userpw = req.getParameter("userpw");
-			String usernick = req.getParameter("userNick");
 			// 로그인 성공
+			memberService.getMemberByUserid(member);
+			
+			String usernick = memberService.getMemberByUserid(member).getUsernick();
+	
+			
 			session.setAttribute("login", "true"); // 세션 정보 저장
 			session.setAttribute("userid", userid); // 세션 정보 저장
 			session.setAttribute("usernick", usernick); // 세션 정보 저장
-			
 			
 			//리다이렉트
 	 		resp.sendRedirect("/main");

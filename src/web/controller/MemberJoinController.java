@@ -7,32 +7,40 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import web.dto.Member;
+import web.service.face.MemberService;
+import web.service.impl.MemberServiceImpl;
 
 
-@WebServlet("/main")
-public class MainController extends HttpServlet {
+@WebServlet("/member/join")
+public class MemberJoinController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private MemberService memberService = new MemberServiceImpl();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-		
-
-		req.setCharacterEncoding("UTF-8");  
-
 
 		// VIEW
-		req.getRequestDispatcher("/WEB-INF/views/main.jsp")
+		req.getRequestDispatcher("/WEB-INF/views/member/join.jsp")
 			.forward(req, resp);
-		System.out.println("login : " + req.getSession().getAttribute("login"));
-		System.out.println("id : " + req.getSession().getAttribute("userid"));
-		System.out.println("nick : " + req.getSession().getAttribute("usernick"));
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
+		Member member = memberService.getMemberParam(req);
+		
+		memberService.join(member);
 		
 		
+		
+		//리다이렉트
+ 		resp.sendRedirect("/main");
+		
+//		// VIEW2
+//		req.getRequestDispatcher("/WEB-INF/views/member/joinsuccess.jsp")
+//		.forward(req, resp);
 	}
-
+	
 }

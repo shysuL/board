@@ -53,4 +53,37 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectMemberByUserid(member);
 	}
 
+	@Override
+	public void join(Member member) {
+		memberDao.insert(member);
+	}
+
+	@Override
+	public Member getMemberParam(HttpServletRequest req) {
+		Member member = new Member();
+		
+		String param = null;
+		
+		// userid
+		param = req.getParameter("userid");
+		if (param != null && !"".equals(param)) {
+			member.setUserid(param);
+		}
+		// userpw
+		param = req.getParameter("userpw");
+		if (param != null && !"".equals(param)) {
+			member.setUserpw(param);
+		}
+		// usernick
+		param = req.getParameter("usernick");
+		if (param != null && !"".equals(param)) {
+			member.setUsernick(param);
+		}
+		
+		
+		return member;
+	}
+	
+	
+
 }

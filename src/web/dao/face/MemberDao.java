@@ -8,4 +8,6 @@ public interface MemberDao {
 	
 	public Member selectMemberByUserid(Member member);
 
+	
+	public void insert(Member member);
 }
