@@ -11,6 +11,7 @@ import util.Paging;
 import web.dbutil.DBConn;
 import web.dao.face.BoardDao;
 import web.dto.Board;
+import web.dto.Boardfile;
 
 public class BoardDaoImpl implements BoardDao{
 
@@ -273,6 +274,77 @@ public class BoardDaoImpl implements BoardDao{
 			}
 		}
 		
+		
+	}
+
+	@Override
+	public int selectBoardno() {
+		conn = DBConn.getConnection(); // DB연결
+		
+		String sql = "";
+		sql += "select board_seq.currval from dual";
+		
+		int cnt = 0;
+		try {
+			ps= conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				cnt = rs.getInt("currval");
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				//    
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+				// ---------------------
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		
+		System.out.println("[BoardDao] selectBoardno : " + cnt);
+		return cnt;
+	}
+
+	@Override
+	public void insertFile(Boardfile boardFile) {
+		
+		System.out.println(boardFile);
+		
+		conn = DBConn.getConnection(); // DB연결
+		
+		String sql = "";
+		sql += "INSERT INTO boardfile(fileno, originname, storedname, filesize)";
+		sql += " VALUES(boardFile_seq.nextval,?,?,?)";
+
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, boardFile.getOriginname()); 
+			ps.setString(2, boardFile.getStoredname());
+			ps.setInt(3, boardFile.getFilesize());
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+
+				if(ps != null) ps.close();
+				// ---------------------
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		
 	}
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import util.Paging;
 import web.dto.Board;
+import web.dto.Boardfile;
 
 public interface BoardDao {
 
@@ -46,5 +47,13 @@ public interface BoardDao {
 
 	
 	public void insert(Board board);
+	
+	
+	
+	
+	public int selectBoardno();
+	
+	
+	public void insertFile(Boardfile boardFile);
 
 }

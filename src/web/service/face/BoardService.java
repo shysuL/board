@@ -3,6 +3,7 @@ package web.service.face;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import util.Paging;
 import web.dto.Board;
@@ -53,4 +54,5 @@ public interface BoardService {
 	
 	public void write(Board board);
 	
+	public void write(HttpServletRequest req, HttpServletResponse resp);
 }

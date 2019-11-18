@@ -16,7 +16,8 @@
    </div>
    <div class="col-sm-6 col-md-offset-3">
 
-<form  name="join" action="/board/write" method="post">
+<form  name="join" action="/board/write" method="post"
+ enctype="multipart/form-data">
   <div class="form-group">
     <label for="exampleInputText">제목</label>
     <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요" />
@@ -24,6 +25,10 @@
   <div class="form-group">
     <label for="exampleInputText">상세내용</label>
     <textarea rows ="20" cols = "20" class="form-control" id="content" name="content" ></textarea>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">첨부파일</label>
+    <input type="file" class="form-control" id = "upfile" name = "upfile" />
   </div>
  
  

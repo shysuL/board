@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import web.dto.Board;
+import web.dto.Boardfile;
 import web.dto.Member;
 import web.service.face.BoardService;
 import web.service.face.MemberService;
@@ -23,7 +24,6 @@ public class BoardWriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private BoardService boardService = new BoardServiceImpl();
-	MemberService memberService = new MemberServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,10 +39,15 @@ public class BoardWriteController extends HttpServlet {
 		
 	
 		
-		Board board = boardService.writeParam(req);
+//		Board board = boardService.writeParam(req);
+//		boardService.write(board);
 		
-		boardService.write(board);
+		// 서비스를 이용한 파일 업로드 처리
+		boardService.write(req, resp);
 		
+		
+		System.out.println("title : " + req.getParameter("title"));
+		System.out.println("upfile : " + req.getParameter("upfile"));
 		//리다이렉트
  		resp.sendRedirect("/board/list");
 	}
