@@ -5,6 +5,8 @@
     
 <jsp:include page = "/WEB-INF/views/layout/header.jsp" />
 
+
+
 <style type = "text/css">
 form {
 	text-align: center;
@@ -18,6 +20,7 @@ label{
  	align-items : center; 
  	text-align: center; 
 }
+
 </style>
 
 <div class = "container">

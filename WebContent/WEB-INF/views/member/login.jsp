@@ -3,7 +3,30 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 				
+<script type="text/javascript">
+$(document).ready(function() {
+	//페이지 첫 접속 시 입력창으로 포커스 이동
+	$("input").eq(0).focus();
+	
+	//패스워드 입력 창에서 엔터 입력 시 form submit
+	$("input").eq(1).keydown(function(key) {
+		if(key.keyCode == 13) {
+			$(this).parents("form").submit();
+		}
+	})
 
+	//로그인 버튼 클릭 시 form submit
+	$("#btnLogin").click(function() {
+		$(this).parents("form").submit();
+	})
+	
+	//취소 버튼 누르면 뒤로가기
+	$("#btnCancel").click(function() {
+		history.go(-1);
+	})
+
+});
+</script>
 
 <style type="text/css">
 h1 {
@@ -33,10 +56,6 @@ div {
 
 
 
-<br>
-<br>
-<br>
-<br>
 
 
 <article class="container">
@@ -65,8 +84,9 @@ div {
     </div>
   </div>
   <div class="form-group">
-    <div class="col-sm-offset-0 col-sm-10">
-      <button type="submit" class="btn btn-default">Log in</button>
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit"  id="btnLogin" class="btn btn-primary">Log in</button>
+      <button type="button" id="btnCancel" class="btn btn-danger">취소</button>
     </div>
  
   </div>

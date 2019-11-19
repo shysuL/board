@@ -42,9 +42,9 @@ public class MemberServiceImpl implements MemberService{
 		
 		int cnt = 0;
 		cnt = memberDao.selectCntMemberByUserid(member);
-		System.out.println("CNT : " + memberDao.selectCntMemberByUserid(member));
+//		System.out.println("CNT : " + memberDao.selectCntMemberByUserid(member));
 		if(cnt == 1) {
-			System.out.println("login()" + cnt);
+//			System.out.println("login()" + cnt);
 			return true;
 		} 
 		return false;

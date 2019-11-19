@@ -9,9 +9,7 @@
 
 
 <!--  jQuery 2.2.4 -->
-<script type="text/javascript"
-src = https://code.jquery.com/jquery-2.2.4.min.js></script>
-
+<script type="text/javascript" src = https://code.jquery.com/jquery-2.2.4.min.js></script>
 <!-- BootStrap 3.3.2 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -37,8 +35,12 @@ src = https://code.jquery.com/jquery-2.2.4.min.js></script>
 	margin : 0; /* background를 전체에 적용하기 위한 설정 */
 	padding: 20px 0; /* h1태그의 높이 지정 */
 }
-
-
+#footer{
+	min-height: 100px;
+}
+.container{
+	min-height: 600px;
+}
 </style>
 
 

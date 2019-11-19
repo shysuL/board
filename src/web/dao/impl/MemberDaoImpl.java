@@ -22,10 +22,16 @@ public class MemberDaoImpl implements MemberDao{
 	public int selectCntMemberByUserid(Member member) {
 		conn = DBConn.getConnection(); // DB연결
 
+		if(member.getUserid() == null || member.getUserpw() == null) {
+			return -1;
+		}
+		
 		// 수행할 SQL 쿼리
 		String sql = "";
 		sql += "SELECT count(*) FROM member";
-		sql += " WHERE userid = ? and userpw = ?";
+		sql += " WHERE 1=1";
+		sql	+= " userid = ? ";
+		sql	+= " AND userpw = ?";
 
 		int cnt = -1;
 		Member mem = new Member(); // 각 행을 처리할 DTO
