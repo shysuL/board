@@ -29,6 +29,7 @@ import web.service.face.BoardService;
 public class BoardServiceImpl implements BoardService{
 
 	BoardDao boardDao = new BoardDaoImpl();
+	Boardfile boardfile = new Boardfile();
 	@Override
 	public List<Board> getList() {
 		return boardDao.selectAll();
@@ -272,8 +273,8 @@ public class BoardServiceImpl implements BoardService{
 
 						// 세션에서 아이디 받기
 						board.setId((String)session.getAttribute("userid"));
-//						System.out.println("[session ID : ]" + (String)session.getAttribute("userid"));
-//						System.out.println(boardno);
+						System.out.println("[session ID : ]" + (String)session.getAttribute("userid"));
+						System.out.println(boardno);
 						board.setBoardno(boardno);
 						
 						
@@ -322,7 +323,7 @@ public class BoardServiceImpl implements BoardService{
 						// -------------------------------
 						
 						System.out.println("insertbn : " + boardno);
-						Boardfile boardfile = new Boardfile();
+						
 						boardfile.setBoardno(boardno);
 						boardfile.setOriginname(item.getName());
 						boardfile.setStoredname(item.getName() + "_" + u);
@@ -330,10 +331,6 @@ public class BoardServiceImpl implements BoardService{
 						// DAO를 통해 DB에 INSERT
 						
 						// 게시물 INSERT
-						boardDao.insert(board);
-//						System.out.println("[board] " + board);
-						// 첨부파일 INSERT
-						boardDao.insertFile(boardfile);
 						
 						
 						// --- 처리가 완료된 파일 업로드 하기 ---
@@ -351,6 +348,10 @@ public class BoardServiceImpl implements BoardService{
 					} // 파일처리 if
 
 				} // 요청 파라미터 처리 while
+				boardDao.insert(board);
+				System.out.println("[board] " + board);
+				// 첨부파일 INSERT
+				boardDao.insertFile(boardfile);
 				
 				
 				

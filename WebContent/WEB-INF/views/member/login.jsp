@@ -3,7 +3,7 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 				
-<script type="text/javascript">
+<%--<script type="text/javascript">
 $(document).ready(function() {
 	//페이지 첫 접속 시 입력창으로 포커스 이동
 	$("input").eq(0).focus();
@@ -26,7 +26,7 @@ $(document).ready(function() {
 	})
 
 });
-</script>
+</script> --%>
 
 <style type="text/css">
 h1 {
@@ -60,7 +60,8 @@ div {
 
 <article class="container">
 
-<form class="form-horizontal" action="<%=response.encodeUrl("/member/login") %>" method="post">
+<%-- <form class="form-horizontal" action="<%=response.encodeUrl("/member/login") %>" method="post"> --%>
+<form class="form-horizontal" action="/member/login" method="post">
 <fieldset style="width: 320px;">
   <div class="form-group">
     <label for="inputText" class="col-sm-3 control-label">아이디</label>

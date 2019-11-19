@@ -50,7 +50,7 @@ public class MemberLoginController extends HttpServlet {
 			session.setAttribute("login", "true"); // 세션 정보 저장
 			session.setAttribute("userid", userid); // 세션 정보 저장
 			session.setAttribute("usernick", usernick); // 세션 정보 저장
-			
+			System.out.println(session.getAttribute("login"));
 			//리다이렉트
 	 		resp.sendRedirect("/main");
 		}else {
