@@ -28,7 +28,7 @@ public class BoardViewController extends HttpServlet {
 		Board viewBoard = boardservice.view(board);
 		
 		req.setAttribute("board", viewBoard);
-		
+//		req.setAttribute("boardfile", arg1);
 		req.getRequestDispatcher("/WEB-INF/views/board/view.jsp")
 			.forward(req, resp);
 	}

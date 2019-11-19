@@ -14,13 +14,17 @@ label{
 }
 
 .container{
-	justify-content:right;
- 	align-items : right; 
- 	text-align: right; 
+	justify-content:center;
+ 	align-items : center; 
+ 	text-align: center; 
 }
 </style>
 
-<div><h1> MAIN </h1></div>
+<div class = "container">
+ <div class="page-header">
+      <div class="col-md-6 col-md-offset-3">
+<h1> MAIN </h1>
+</div></div>
 <hr>
 
 
@@ -36,10 +40,10 @@ label{
 <c:otherwise>
 <!-- <form action="/login/login" method="post"> -->
 
-<div class = "container">
+
 <button><a href = "/member/login">로그인</a></button>    
 <button><a href = "/member/join">회원가입</a></button>
-</div>
+
 
 <form action="<%=response.encodeUrl("/login/login") %>" method="post">
 <!-- <form action="/login/login;jsessionid=<%=session.getId() %>" method="post"> -->
@@ -53,7 +57,7 @@ label{
 
 </c:choose>
 
-
+</div>
 
 
 

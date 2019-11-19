@@ -1,9 +1,11 @@
 <%@page import="java.util.List"%>
 <%@page import="web.dto.Board"%>
+<%@page import="web.dto.Boardfile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% Board board = (Board) request.getAttribute("board"); %>
+<% Boardfile boardfile = (Boardfile) request.getAttribute("boardfile"); %>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -67,6 +69,9 @@ td:hover{
 
 <tr>
 <td class="info">작성일</td><td colspan="3">${board.writtendate }</td>
+</tr>
+<tr>
+<td class="info">첨부파일</td><td colspan="3">${boardfile.storedname}</td>
 </tr>
 
 <tr><td class="info"  colspan="4">본문</td></tr>

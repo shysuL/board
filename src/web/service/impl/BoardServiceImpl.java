@@ -123,6 +123,13 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void write(HttpServletRequest req, HttpServletResponse resp) {
 		
+		// 보드 객체 생성
+		Board board = new Board();
+		// boardno
+		int boardno = boardDao.selectBoardno();
+		
+		// 세션객체 생성
+		HttpSession session = req.getSession();
 		// 응답 객체 Content-Type 설정
 		resp.setContentType("text/html; charset=UTF-8");
 
@@ -233,42 +240,29 @@ public class BoardServiceImpl implements BoardService{
 						//			}
 						// key값에 따라 처리방식 다르게 하기
 						String key = item.getFieldName();
-
+						
+						
 						if("title".equals(key)) {
 							out.println("- - - 폼 필드 - - -<br>");
 							out.println("키 : " + item.getFieldName() + "<br>");
+							try {
+								board.setTitle(item.getString("utf-8"));
+							} catch (UnsupportedEncodingException e1) {
+								e1.printStackTrace();
+							}
 							try {
 								out.println("값 : " + item.getString("utf-8") + "<br>");
 							} catch (UnsupportedEncodingException e) {
 								e.printStackTrace();
 							}			
-						}else if("bce".equals(key)){
+						}else if("content".equals(key)){
 							out.println("- - - 폼 필드 - - -<br>");
 							out.println("키 : " + item.getFieldName() + "<br>");
 							try {
-								out.println("값 : " + item.getString("utf-8") + "<br>");
-							} catch (UnsupportedEncodingException e) {
-								e.printStackTrace();
+								board.setContent(item.getString("utf-8"));
+							} catch (UnsupportedEncodingException e1) {
+								e1.printStackTrace();
 							}
-						}else if("cawa".equals(key)){
-							out.println("- - - 폼 필드 - - -<br>");
-							out.println("키 : " + item.getFieldName() + "<br>");
-							try {
-								out.println("값 : " + item.getString("utf-8") + "<br>");
-							} catch (UnsupportedEncodingException e) {
-								e.printStackTrace();
-							}
-						}else if("ggt".equals(key)){
-							out.println("- - - 폼 필드 - - -<br>");
-							out.println("키 : " + item.getFieldName() + "<br>");
-							try {
-								out.println("값 : " + item.getString("utf-8") + "<br>");
-							} catch (UnsupportedEncodingException e) {
-								e.printStackTrace();
-							}
-						}else if("test".equals(key)){
-							out.println("- - - 폼 필드 - - -<br>");
-							out.println("키 : " + item.getFieldName() + "<br>");
 							try {
 								out.println("값 : " + item.getString("utf-8") + "<br>");
 							} catch (UnsupportedEncodingException e) {
@@ -276,8 +270,13 @@ public class BoardServiceImpl implements BoardService{
 							}
 						}// key값 비교 if
 
-
-
+						// 세션에서 아이디 받기
+						board.setId((String)session.getAttribute("userid"));
+//						System.out.println("[session ID : ]" + (String)session.getAttribute("userid"));
+//						System.out.println(boardno);
+						board.setBoardno(boardno);
+						
+						
 
 
 					}else { // 3 - 파일처리
@@ -316,17 +315,24 @@ public class BoardServiceImpl implements BoardService{
 						// - - - DB에 업로드 정보 기록하기 - - -
 						
 						// 파일번호	fileno
+						// 게시글 번호 	boardno
 						// 원본파일명	origin_name
 						// 저장파일명	stored_name
 						
 						// -------------------------------
+						
+						System.out.println("insertbn : " + boardno);
 						Boardfile boardfile = new Boardfile();
+						boardfile.setBoardno(boardno);
 						boardfile.setOriginname(item.getName());
 						boardfile.setStoredname(item.getName() + "_" + u);
 						
 						// DAO를 통해 DB에 INSERT
-					
 						
+						// 게시물 INSERT
+						boardDao.insert(board);
+//						System.out.println("[board] " + board);
+						// 첨부파일 INSERT
 						boardDao.insertFile(boardfile);
 						
 						
@@ -345,7 +351,9 @@ public class BoardServiceImpl implements BoardService{
 					} // 파일처리 if
 
 				} // 요청 파라미터 처리 while
-
+				
+				
+				
 			} // fileupload()메소드
 		
 	

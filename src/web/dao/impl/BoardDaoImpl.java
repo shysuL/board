@@ -247,18 +247,18 @@ public class BoardDaoImpl implements BoardDao{
 		sql += " , id";
 		sql += " , content";
 		sql += " , hit)";
-		sql += " VALUES (board_seq.nextval,?,?,?,0)" ;
+		sql += " VALUES (?,?,?,?,0)" ;
 		
 		try {
 			ps = conn.prepareStatement(sql);
 			
 			// SQL쿼리의 ? 채우기
 			
-			ps.setString(1, board.getTitle() ); 
-			ps.setString(2, board.getId() ); 
-			ps.setString(3, board.getContent() ); 
-//			ps.setDate(5, board.getWrittendate() ); 
-			
+			ps.setInt(1, board.getBoardno() ); 
+			ps.setString(2, board.getTitle() ); 
+			ps.setString(3, board.getId() ); 
+			ps.setString(4, board.getContent() ); 
+//			System.out.println("ididid: " + board.getId());
 			
 			
 			ps.executeUpdate();
@@ -282,15 +282,15 @@ public class BoardDaoImpl implements BoardDao{
 		conn = DBConn.getConnection(); // DB연결
 		
 		String sql = "";
-		sql += "select board_seq.currval from dual";
+		sql += "select board_seq.nextval from dual";
 		
-		int cnt = 0;
+		int cnt = -1;
 		try {
 			ps= conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				cnt = rs.getInt("currval");
+				cnt = rs.getInt("nextval");
 			}
 			
 			
@@ -321,16 +321,17 @@ public class BoardDaoImpl implements BoardDao{
 		conn = DBConn.getConnection(); // DB연결
 		
 		String sql = "";
-		sql += "INSERT INTO boardfile(fileno, originname, storedname, filesize)";
-		sql += " VALUES(boardFile_seq.nextval,?,?,?)";
+		sql += "INSERT INTO boardfile(fileno,boardno, originname, storedname, filesize)";
+		sql += " VALUES(boardFile_seq.nextval,?,?,?,?)";
 
 		
 		try {
 			ps = conn.prepareStatement(sql);
 			
-			ps.setString(1, boardFile.getOriginname()); 
-			ps.setString(2, boardFile.getStoredname());
-			ps.setInt(3, boardFile.getFilesize());
+			ps.setInt(1,  boardFile.getBoardno());
+			ps.setString(2, boardFile.getOriginname()); 
+			ps.setString(3, boardFile.getStoredname());
+			ps.setInt(4, boardFile.getFilesize());
 			
 			ps.executeUpdate();
 			

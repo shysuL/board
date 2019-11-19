@@ -46,8 +46,7 @@ public class BoardWriteController extends HttpServlet {
 		boardService.write(req, resp);
 		
 		
-		System.out.println("title : " + req.getParameter("title"));
-		System.out.println("upfile : " + req.getParameter("upfile"));
+	
 		//리다이렉트
  		resp.sendRedirect("/board/list");
 	}
