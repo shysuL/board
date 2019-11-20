@@ -35,7 +35,7 @@ public class BoardWriteController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		HttpSession session = req.getSession();
+		
 		
 	
 		

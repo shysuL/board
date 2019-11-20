@@ -27,12 +27,23 @@ public class FileDownloadController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
+		// 1. 단계적으로 하기
+		// 전달 파라미터 받기
+//		Boardfile downFile = boardservice.getFileno(req);
+//		System.out.println(downFile);
+//		
+//		// 다운로드 대상 파일 정보 조회하기
+//		boardservice.getFile(downFile);
+//		System.out.println(downFile);
+
+		
 		Boardfile downFile = boardservice.getFile(req);
 		
 		// 다운로드용 File객체 만들기
 		String path = getServletContext().getRealPath("upload"); // 경로
 		String filename = downFile.getStoredname() ; // 파일이름
-		
+		System.out.println(path);
+		System.out.println(filename);
 		File file = new File(path,filename);
 				
 		

@@ -96,6 +96,12 @@ public class BoardServiceImpl implements BoardService{
 			e.printStackTrace();
 		}
 		
+		
+		param = req.getParameter("boardno");
+		if (param != null && !"".equals(param)) {
+			board.setBoardno(Integer.parseInt(param));
+		}
+		
 		param = req.getParameter("title");
 		if (param != null && !"".equals(param)) {
 			board.setTitle(param);

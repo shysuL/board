@@ -60,8 +60,7 @@ public interface BoardDao {
 	
 	public void update(Board board);
 	
-	public void insert(Boardfile file);
-
+	
 	public Boardfile selectBoardfileByBoardno(Boardfile boardfile);
 
 	public void selectByFileno(Boardfile boardfile);

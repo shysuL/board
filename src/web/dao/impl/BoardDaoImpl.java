@@ -433,11 +433,7 @@ public class BoardDaoImpl implements BoardDao{
 		
 	}
 
-	@Override
-	public void insert(Boardfile file) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public Boardfile selectBoardfileByBoardno(Boardfile boardfile) {
