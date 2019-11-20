@@ -64,12 +64,12 @@ $(document).ready(function() {
     <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요" />
   </div>
   <div class="form-group">
-    <label for="exampleInputText">상세내용</label>
-    <textarea rows ="20" cols = "20" class="form-control" id="content" name="content" ></textarea>
-  </div>
-  <div class="form-group">
     <label for="exampleInputFile">첨부파일</label>
     <input type="file" class="form-control" id = "upfile" name = "upfile" />
+  </div>
+  <div class="form-group">
+    <label for="exampleInputText">상세내용</label>
+    <textarea rows ="20" cols = "20" class="form-control" id="content" name="content" ></textarea>
   </div>
  
  

@@ -42,6 +42,11 @@ tr td:not(:first-child), tr th:not(:first-child){
 #main{
  text-align: right;
 }
+#write{
+ text-align: right;
+ margin : 10 auto;
+}
+
 
 
 </style>
@@ -49,7 +54,7 @@ tr td:not(:first-child), tr th:not(:first-child){
 <div class ="container">
 
 <h1>게시판 <small>ㅎ ㅎ ㅎ </small></h1> 
-<div id = "main"><button><a href = "/main">메인</a></button></div>
+<div id = "main" ><button class="btn btn-default"><a href = "/main">메인</a></button></div>
 <hr>
 
 
@@ -68,7 +73,8 @@ tr td:not(:first-child), tr th:not(:first-child){
 <tr>
 	<td>
 		${board.boardno }
-<%-- 	<%=bList.get(i).getBoardno() %></td> --%>
+<%-- 	<%=bList.get(i).getBoardno() %>> --%>
+	</td>
 	<td>
 <%-- 		<a href="/board/view?bno=<%=bList.get(i).getBoardno() %>"> --%>
 <%-- 		<%=bList.get(i).getTitle() %></a> --%>
@@ -90,7 +96,7 @@ tr td:not(:first-child), tr th:not(:first-child){
 
 <jsp:include page = "/WEB-INF/views/layout/paging.jsp" />
 
-<div id = "main"><button id = "btnWrite">글쓰기</button></div>
+<div id = "write"><button id = "btnWrite" class="btn btn-default">글쓰기</button></div>
 
 
 </div><!--  .container -->

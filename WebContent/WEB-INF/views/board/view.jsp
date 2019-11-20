@@ -71,7 +71,8 @@ td:hover{
 <td class="info">작성일</td><td colspan="3">${board.writtendate }</td>
 </tr>
 <tr>
-<td class="info">첨부파일</td><td colspan="3">${boardfile.storedname}</td>
+<td class="info">첨부파일</td><td colspan="3">
+<a href="/upload/${boardfile.storedname}">${boardfile.originname}</a></td>
 </tr>
 
 <tr><td class="info"  colspan="4">본문</td></tr>
@@ -82,13 +83,11 @@ td:hover{
 
 <div class="text-center">	
 	<button id="btnList" class="btn btn-primary" onclick="location.href='/board/list';">목록</button>
-	<button id="btnUpdate" class="btn btn-info">수정</button>
+	<button id="btnUpdate" class="btn btn-info" onclick="location.href='/board/update';" >
+	<a href="/board/update?bno=${board.boardno }">수정</a></button>
 	<button id="btnDelete" class="btn btn-danger">삭제</button>
 </div>
 
 </div><!-- .container -->
 
 <jsp:include page = "/WEB-INF/views/layout/footer.jsp" />
-
-</body>
-</html>

@@ -349,4 +349,172 @@ public class BoardDaoImpl implements BoardDao{
 		
 	}
 
+	@Override
+	public Board selectByBoardno(Board board) {
+		conn = DBConn.getConnection(); // DB연결
+
+		// 수행할 SQL 쿼리
+		String sql = "";
+		sql += "SELECT * FROM board"  ;
+		sql += " WHERE boardno = ?" ;
+		
+
+
+		
+		
+		try {
+			ps = conn.prepareStatement(sql); // 수행 객체 얻기
+			
+			ps.setInt(1,  board.getBoardno());
+			
+			rs = ps.executeQuery(); // SQL 수행 결과 얻기
+
+			// SQL 수행결과 처리
+			while (rs.next()) {
+				
+				
+				board.setBoardno(rs.getInt("boardno"));
+				board.setTitle(rs.getString("title"));
+				board.setId(rs.getString("ID"));
+				board.setContent(rs.getString("content"));
+				board.setHit(rs.getInt("hit"));
+				board.setWrittendate(rs.getDate("WrittenDate"));
+				
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				//    
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+				// ---------------------
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+			
+			
+		return board;
+	}
+
+	@Override
+	public void update(Board board) {
+		conn = DBConn.getConnection(); // DB연결
+
+		// 수행할 SQL 쿼리
+		String sql = "";
+		sql += "UPDATE board SET title = ? , content = ?";
+		sql += " WHERE boardno = ?";
+
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			// SQL쿼리의 ? 채우기
+			ps.setString(1, board.getTitle() );
+			ps.setString(2, board.getContent() );
+			ps.setInt(3, board.getBoardno() ); 
+			
+			 
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				
+				if(ps != null) ps.close();
+				// ---------------------
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	@Override
+	public void insert(Boardfile file) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Boardfile selectBoardfileByBoardno(Boardfile boardfile) {
+		conn = DBConn.getConnection();
+		
+		String sql = "";
+		sql += "SELECT * FROM boardfile";
+		sql += " WHERE boardno = ?";
+		sql += " ORDER BY boardno ";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1,  boardfile.getBoardno());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				boardfile.setFileno(rs.getInt("fileno"));
+				boardfile.setBoardno(rs.getInt("boardno"));
+				boardfile.setOriginname(rs.getString("originname"));
+				boardfile.setStoredname(rs.getString("storedname"));
+				boardfile.setFilesize(rs.getInt("filesize")); 
+				boardfile.setWritedate(rs.getDate("WriteDate"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null)
+				try {
+					if(rs != null) rs.close();
+					if(ps != null) ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		return boardfile;
+	}
+
+	@Override
+	public void selectByFileno(Boardfile boardfile) {
+		// DB연결 객체
+		conn = DBConn.getConnection();
+		
+		// 수행할 SQL 쿼리
+		String sql = "";
+		sql += "SELECT * FROM boardfile";
+		sql += " WHERE fileno = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1,  boardfile.getBoardno());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				boardfile.setFileno(rs.getInt("fileno"));
+				boardfile.setBoardno(rs.getInt("boardno"));
+				boardfile.setOriginname(rs.getString("originname"));
+				boardfile.setStoredname(rs.getString("storedname"));
+				boardfile.setFilesize(rs.getInt("filesize")); 
+				boardfile.setWritedate(rs.getDate("WriteDate"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null)
+				try {
+					if(rs != null) rs.close();
+					if(ps != null) ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+	}
+
 }

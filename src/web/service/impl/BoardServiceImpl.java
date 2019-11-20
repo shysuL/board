@@ -273,8 +273,8 @@ public class BoardServiceImpl implements BoardService{
 
 						// 세션에서 아이디 받기
 						board.setId((String)session.getAttribute("userid"));
-						System.out.println("[session ID : ]" + (String)session.getAttribute("userid"));
-						System.out.println(boardno);
+//						System.out.println("[session ID : ]" + (String)session.getAttribute("userid"));
+//						System.out.println(boardno);
 						board.setBoardno(boardno);
 						
 						
@@ -327,6 +327,7 @@ public class BoardServiceImpl implements BoardService{
 						boardfile.setBoardno(boardno);
 						boardfile.setOriginname(item.getName());
 						boardfile.setStoredname(item.getName() + "_" + u);
+						boardfile.setFilesize((int)item.getSize());
 						
 						// DAO를 통해 DB에 INSERT
 						
@@ -349,13 +350,74 @@ public class BoardServiceImpl implements BoardService{
 
 				} // 요청 파라미터 처리 while
 				boardDao.insert(board);
-				System.out.println("[board] " + board);
+//				System.out.println("[board] " + board);
 				// 첨부파일 INSERT
 				boardDao.insertFile(boardfile);
 				
 				
 				
 			} // fileupload()메소드
+	
+	
+	
+	@Override
+	public void update(Board board) {
+		
+		boardDao.update(board);
+	}
+	@Override
+	public Boardfile getBoardfileno(HttpServletRequest req) {
+		String param = req.getParameter("bno");
+		
+		if(param == null) return null;
+		
+		int boardno = Integer.parseInt(param);
+		
+		Boardfile boardfile = new Boardfile();
+		boardfile.setBoardno(boardno);
+		return boardfile;
+	
+	}
+	
+	
+	
+	@Override
+	public Boardfile viewfile(Boardfile boardfile) {
+		
+		return boardDao.selectBoardfileByBoardno(boardfile);
+	}
+	
+	
+	
+	@Override
+	public Boardfile getFile(HttpServletRequest req) {
+		// 요청파라미터 fileno 얻기
+		boardfile = getFileno(req);
+		
+		// 파일정보 얻기
+		getFile(boardfile);
+		
+		return boardfile;
+	}
+	public void getFile(Boardfile boardfile) {
+		boardDao.selectByFileno(boardfile);
+		
+	}
+	public Boardfile getFileno(HttpServletRequest req) {
+		String param = req.getParameter("fileno");
+
+		// int형으로 형변환
+		int fileno = 0;
+		if(param!=null && !"".equals(param)) {
+			fileno = Integer.parseInt(param);
+		}
+
+		// DTO에 저장
+		Boardfile boardfile = new Boardfile();
+		boardfile.setFileno(fileno);
+
+		return boardfile;
+	}
 		
 	
 	

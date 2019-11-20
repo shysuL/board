@@ -40,7 +40,6 @@
 }
 .container{
 	width: 1400px;
-	min-height: 600px;
 }
 #wrapper{
    min-height:700px;

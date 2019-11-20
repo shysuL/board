@@ -15,24 +15,29 @@ label{
 	text-align: left;
 }
 
-.container{
-	justify-content:center;
+.page-header{
+	justify-content: center;
  	align-items : center; 
  	text-align: center; 
+}
+.container{
+	justify-content:right;
+ 	align-items : right; 
+ 	text-align: right; 
 }
 
 </style>
 
+<div class="page-header"><h1> MAIN </h1></div>
 <div class = "container">
- <div class="page-header">
+ 
       <div class="col-md-6 col-md-offset-3">
-<h1> MAIN </h1>
-</div></div>
-<hr>
+</div>
 
 
 
 
+<%--
 <c:choose>
 <c:when test="${not empty login }" >
 	<h3>${sessionScope.usernick }</h3>
@@ -52,15 +57,27 @@ label{
 <!-- <form action="/login/login;jsessionid=<%=session.getId() %>" method="post"> -->
 
    </form>
-   
-
-
+  
 </c:otherwise>
-
-
 </c:choose>
-
 </div>
+ --%>
+<!-- 비로그인상태 -->
+<c:if test="${not login }">
+<strong>로그인이 필요합니다</strong><br>
+<button class="btn btn-default" onclick='location.href="/member/login";'>로그인</button>
+<button class="btn btn-default" onclick='location.href="/member/join";'>회원가입</button>
+</c:if>
+
+<!-- 로그인상태 -->
+<c:if test="${login }">
+<strong>${usernick } 님, 환영합니다</strong><br>
+<button class="btn btn-default" onclick='location.href="/board/list";'>게시판 가기</button>
+<button class="btn btn-default" onclick='location.href="/member/logout";'>로그아웃</button>
+</c:if>
+</div>
+
+
 
 
 

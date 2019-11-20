@@ -2,6 +2,14 @@
     pageEncoding="UTF-8"%>
 <jsp:include page = "/WEB-INF/views/layout/header.jsp" />
 
+<style type="text/css">
+#btnCancle{
+	justify-content:right;
+ 	align-items : right; 
+ 	text-align: right; 
+}
+
+</style>
 
 <script>
 function isSame(){
@@ -23,9 +31,13 @@ function isSame(){
 	}
 }
 }	
-function joinsuccess(){
-
-}
+$(document).ready(function() {
+	
+	//취소버튼 동작
+	$("#btnCancel").click(function() {
+		history.go(-1);
+	});
+});
 </script>
 
 <article class="container">
@@ -65,6 +77,7 @@ function joinsuccess(){
   	회원가입
   	<%--</a> --%>
   	</button>
+  	<button  type="button" id = "btnCancle" class="btn btn-danger">취소</button>
 </form>
 </div>
 
