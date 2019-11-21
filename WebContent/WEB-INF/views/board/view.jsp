@@ -4,8 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<% Board board = (Board) request.getAttribute("board"); %>
-<% Boardfile boardfile = (Boardfile) request.getAttribute("boardfile"); %>
+
+<jsp:include page = "/WEB-INF/views/layout/header.jsp" />
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -16,10 +16,12 @@ $(document).ready(function() {
 	
 	//수정버튼 동작
 	$("#btnUpdate").click(function() {
+		location.href = "/board/update?bno=${board.boardno }";
 	});
 
 	//삭제버튼 동작
 	$("#btnDelete").click(function() {
+		$(location).attr("href", "/board/delete?bno=${board.boardno }");
 	});
 	
 });
@@ -41,8 +43,6 @@ td:hover{
 }     
 </style>
 
-
-<jsp:include page = "/WEB-INF/views/layout/header.jsp" />
 <div class="container">
 <h1>게시글 상세 내용</h1>
 <hr>
@@ -82,12 +82,15 @@ td:hover{
 </table>
 
 <div class="text-center">	
-	<button id="btnList" class="btn btn-primary" onclick="location.href='/board/list';">목록</button>
-	<button id="btnUpdate" class="btn btn-info" onclick="location.href='/board/update';" >
-	<a href="/board/update?bno=${board.boardno }">수정</a></button>
+	<button id="btnList" class="btn btn-primary">목록</button>
+	<c:if test="${board.id eq userid }">
+	<button id="btnUpdate" class="btn btn-info">수정</button>
 	<button id="btnDelete" class="btn btn-danger">삭제</button>
+	</c:if>
 </div>
 
 </div><!-- .container -->
 
 <jsp:include page = "/WEB-INF/views/layout/footer.jsp" />
+
+

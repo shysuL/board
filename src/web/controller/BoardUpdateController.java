@@ -41,9 +41,17 @@ public class BoardUpdateController extends HttpServlet {
 		
 		
 		
-		Board board = boardService.writeParam(req);
-		boardService.update(board);
+//		Board board = boardService.writeParam(req);
+//		boardService.update(board);
 		
+		
+		// 서비스를 이용한 파일 업로드 처리
+		Board board = boardService.update(req, resp);
+		System.out.println("Update Controller : " + board);
+		
+		// bno 받기
+//		boardService.getBoardno(req);
+				
 		//리다이렉트
  		resp.sendRedirect("/board/view?bno="+board.getBoardno());
 	

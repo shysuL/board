@@ -434,7 +434,6 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	
-
 	@Override
 	public Boardfile selectBoardfileByBoardno(Boardfile boardfile) {
 		conn = DBConn.getConnection();
@@ -511,6 +510,32 @@ public class BoardDaoImpl implements BoardDao{
 				}
 		}
 		
+	}
+
+	@Override
+	public void delete(Board board) {
+		conn = DBConn.getConnection();
+		
+		String sql = "";
+		sql += "DELETE FROM board";
+		sql += " WHERE boardno = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1,  board.getBoardno());
+			
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null)
+				try {
+					if(ps != null) ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
 	}
 
 }

@@ -31,7 +31,7 @@
 
       //수정버튼 동작
       $("#btnUpdate").click(function() {
-         submitContents($("#btnList"));
+         submitContents($("#btnUpdate"));
 
          $("form").submit();
       });
@@ -44,7 +44,7 @@
    <h1>게시판 - 수정하기</h1>
 
    <hr>
-   <form name="update" action="/board/update" method="post">
+   <form name="update" action="/board/update" method="post" enctype="multipart/form-data">
       <input type="hidden" name="boardno" value="${board.boardno }" />
 
       <table class="table table-bordered">

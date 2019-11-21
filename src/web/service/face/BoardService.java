@@ -60,6 +60,7 @@ public interface BoardService {
 	
 	public void update(Board board);
 	
+	public Board update(HttpServletRequest req, HttpServletResponse resp);
 	
 	
 	
@@ -74,4 +75,8 @@ public interface BoardService {
 	public void getFile(Boardfile boardfile);
 	
 	public Boardfile getFileno(HttpServletRequest req);
+	
+	
+	public void delete(Board board);
+	
 }

@@ -64,6 +64,8 @@ public interface BoardDao {
 	public Boardfile selectBoardfileByBoardno(Boardfile boardfile);
 
 	public void selectByFileno(Boardfile boardfile);
+
+	public void delete(Board board);
 	
 
 }
