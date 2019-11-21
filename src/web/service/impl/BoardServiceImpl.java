@@ -693,6 +693,10 @@ public class BoardServiceImpl implements BoardService{
 		boardDao.delete(board);
 		
 	}
+	@Override
+	public void recommend(Board recommendBoard) {
+		
+	}
 		
 	
 	

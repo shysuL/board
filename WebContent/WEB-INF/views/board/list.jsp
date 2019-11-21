@@ -23,6 +23,23 @@ $(document).ready(function() {
 		location.href = "/main";
 	});
 });
+
+$(document).ready(function() {
+    //최상단 체크박스 클릭
+    $("#checkAll").click(function() {
+       //클릭되었으면
+       if ($("#checkAll").prop("checked")) {
+          //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+          $("input[name=checks]").prop("checked", true);
+          //클릭이 안되있으면
+       } else {
+          //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+          $("input[name=checks]").prop("checked", false);
+       }
+    });
+ });
+
+
 </script>
 
 
@@ -42,8 +59,15 @@ tr td:not(:first-child), tr th:not(:first-child){
 #main{
  text-align: right;
 }
-#write{
+#btnWrite{
  text-align: right;
+ margin-bottom: 20px; ;
+
+ 
+}
+#btnChkDelete{
+
+ text-align: left;
  margin-bottom: 20px; ;
  
 }
@@ -55,50 +79,42 @@ tr td:not(:first-child), tr th:not(:first-child){
 <div class ="container">
 
 <h1>게시판 <small>ㅎ ㅎ ㅎ </small></h1> 
-<div id = "main" ><button id = "main" class="btn btn-default">메인</button></div>
+<div  class="text-right" ><button id = "main" class="btn btn-default">메인</button></div>
 <hr>
 
 
-
+<form  action = "/board/listDelete" method = "post">
 <table class = "table table-hover table-striped table table-condensed">
 <tr class="success">
+	<th style = "width:2%"><input type="checkbox" id = "checkAll" /></th>
 	<th style = "width:10%">번호</th>
-	<th style = "width:50%">제목</th>
-	<th style = "width:20%">ID</th>
-<!-- 	<th style = "width:15%">내용</th> -->
+	<th style = "width:53%">제목</th>
+	<th style = "width:15%">ID</th>
 	<th style = "width:10%">조회수</th>
 	<th style = "width:10%">작성일</th>
 </tr>
-<%-- <% for(int i = 0 ; i < bList.size() ; i++){%> --%>
 <c:forEach items="${list }" var="board">
 <tr>
-	<td>
+	<td><input type = "checkbox"  id = "checks" name = "checks" value = "${board.boardno}"/></td>
+	<td style = "text-align: center">
 		${board.boardno }
-<%-- 	<%=bList.get(i).getBoardno() %>> --%>
 	</td>
 	<td>
-<%-- 		<a href="/board/view?bno=<%=bList.get(i).getBoardno() %>"> --%>
-<%-- 		<%=bList.get(i).getTitle() %></a> --%>
-		<a href="/board/view?bno=${board.boardno }">
+		<a href="/board/view?bno=${board.boardno}">
 		${board.title }</a>
 	</td>
-<%-- 	<td><%=bList.get(i).getId() %></td> --%>
-<%-- 	<td><%=bList.get(i).getContent() %></td> --%>
-<%-- 	<td><%=bList.get(i).getHit() %></td> --%>
-<%-- 	<td><%=bList.get(i).getWrittendate() %></td> --%>
 	<td>${board.id }</td>
-<%-- 	<td>${board.content }</td> --%>
 	<td>${board.hit }</td>
 	<td><fmt:formatDate value="${board.writtendate }" pattern="yyyy-MM-dd"/></td>
 </tr>
-<%-- <%}%> --%>
 </c:forEach>
-</table>
 
+</table>
+<button  id = "btnChkDelete" class="btn btn-default">체크 삭제</button>
+</form>
 <jsp:include page = "/WEB-INF/views/layout/paging.jsp" />
 
-<div id = "write" ><button id = "btnWrite" class="btn btn-default"  >글쓰기</button></div>
-
+<button id = "btnWrite" class="btn btn-default" >글쓰기</button>
 
 </div><!--  .container -->
 

@@ -79,4 +79,7 @@ public interface BoardService {
 	
 	public void delete(Board board);
 	
+	public void recommend(Board recommendBoard);
+	
+	
 }

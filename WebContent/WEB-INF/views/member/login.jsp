@@ -35,7 +35,6 @@ h1 {
 .container{
 	display: flex;
 	justify-content:center;
-	align-items : center;
 }
 table, th {
 	text-align: center;

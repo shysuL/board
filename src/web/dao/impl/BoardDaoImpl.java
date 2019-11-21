@@ -538,4 +538,16 @@ public class BoardDaoImpl implements BoardDao{
 		}
 	}
 
+	@Override
+	public void insertRecommend(Board board) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteRecommend(Board board) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

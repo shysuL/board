@@ -67,5 +67,10 @@ public interface BoardDao {
 
 	public void delete(Board board);
 	
+	
+	
+	public void insertRecommend(Board board);
+	
+	public void deleteRecommend(Board board);
 
 }
