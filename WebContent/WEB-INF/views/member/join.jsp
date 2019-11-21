@@ -28,14 +28,16 @@ function isSame(){
 	}else{
 		document.getElementById('same').innerHTML = '비밀번호가 일치하지 않습니다.';
 		document.getElementById('same').style.color='red';
-	}
+	}	
 }
 }	
 $(document).ready(function() {
 	
 	//취소버튼 동작
 	$("#btnCancel").click(function() {
-		history.go(-1);
+		location.href = "/main";
+// 		$(location).attr("href", "/main");
+		// 		history.go(-1);
 	});
 });
 </script>
@@ -61,23 +63,24 @@ $(document).ready(function() {
     <label for="exampleInputPassword1">패스워드확인</label>
     <input type="password" class="form-control" id="pwdchk" name="pwdchk" onchange = "isSame()"  placeholder="password" />
     &nbsp;&nbsp;<span id="same"></span>
+    
+    
+    
   </div>
   <div class="form-group">
     <label for ="exampleInputText"> 닉네임 </label>
 	<input type="text" class="form-control" id = "usernick" name="usernick" placeholder="닉네임"/>	
-    <p class="help-block">여기에 블록레벨 도움말 예제</p>
+    
   </div>
   <div class="checkbox">
-    <label>
-      <input type="checkbox"> 입력을 기억합니다
-    </label>
+    
   </div>
   <button type="submit" class="btn btn-default">
   		<%-- <a href = "/member/join"> --%>
   	회원가입
   	<%--</a> --%>
   	</button>
-  	<button  type="button" id = "btnCancle" class="btn btn-danger">취소</button>
+  	<button  type="button" id = "btnCancel" class="btn btn-danger">취소</button>
 </form>
 </div>
 

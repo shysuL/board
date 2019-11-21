@@ -16,11 +16,11 @@ $(document).ready(function() {
 	//로그인되어있지 않으면 글쓰기 페이지로 넘어가지 않음
 	//main으로 리다이렉트
 	$("#btnWrite").click(function() {
-		if(${empty login}){
-		$(location).attr("href", "/main");
-		} else{
-			$(location).attr("href", "/board/write");
-		}
+		location.href = "/board/write";
+	});
+	
+	$("#main").click(function() {
+		location.href = "/main";
 	});
 });
 </script>
@@ -44,7 +44,8 @@ tr td:not(:first-child), tr th:not(:first-child){
 }
 #write{
  text-align: right;
- margin : 10 auto;
+ margin-bottom: 20px; ;
+ 
 }
 
 
@@ -54,7 +55,7 @@ tr td:not(:first-child), tr th:not(:first-child){
 <div class ="container">
 
 <h1>게시판 <small>ㅎ ㅎ ㅎ </small></h1> 
-<div id = "main" ><button class="btn btn-default"><a href = "/main">메인</a></button></div>
+<div id = "main" ><button id = "main" class="btn btn-default">메인</button></div>
 <hr>
 
 
@@ -96,7 +97,7 @@ tr td:not(:first-child), tr th:not(:first-child){
 
 <jsp:include page = "/WEB-INF/views/layout/paging.jsp" />
 
-<div id = "write"><button id = "btnWrite" class="btn btn-default">글쓰기</button></div>
+<div id = "write" ><button id = "btnWrite" class="btn btn-default"  >글쓰기</button></div>
 
 
 </div><!--  .container -->
