@@ -48,7 +48,7 @@ public interface BoardService {
 	 * @param req - 요청정보 객체
 	 * @return Paging - 페이징 정보
 	 */
-	public Paging getPasing(HttpServletRequest req);
+	public Paging getPaging(HttpServletRequest req);
 		
 	
 	public Board writeParam(HttpServletRequest req );

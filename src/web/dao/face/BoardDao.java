@@ -43,7 +43,7 @@ public interface BoardDao {
 	 * 
 	 * @return int - 총 게시글 수
 	 */
-	public int selectCntAll();
+	public int selectCntAll(String search);
 
 	
 	public void insert(Board board);

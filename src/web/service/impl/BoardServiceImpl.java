@@ -63,10 +63,12 @@ public class BoardServiceImpl implements BoardService{
 		return null;
 	}
 	@Override
-	public Paging getPasing(HttpServletRequest req) {
+	public Paging getPaging(HttpServletRequest req) {
 		
 		// * 요청 파라미터 curPage를 파싱한다
 		String param = req.getParameter("curPage");
+		String search = req.getParameter("search");
+		
 		int curPage = 0;
 		if(param!=null && !"".equals(param)) {
 			curPage = Integer.parseInt(param);
@@ -74,11 +76,11 @@ public class BoardServiceImpl implements BoardService{
 //		System.out.println("curPage : " + curPage);
 		
 		// * Board TB와 curPage값을 이용한 Paging 객체를 생성하고 반환
-		int totalCount = boardDao.selectCntAll();
+		int totalCount = boardDao.selectCntAll(search);
 		
 		// Paging  객체 생성
 		Paging paging = new Paging(totalCount, curPage);
-		
+		paging.setSearch(search);
 		return paging;
 	}
 	@Override

@@ -18,6 +18,7 @@ public class BoardDaoImpl implements BoardDao{
 	private Connection conn = null;// DB연결 객체
 	private PreparedStatement ps = null; // SQL 수행 객체
 	private ResultSet rs = null; // SQL수행 결과 객체
+	private	Paging paging;
 	
 	@Override
 	public List<Board> selectAll() {
@@ -137,22 +138,38 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	@Override
-	public int selectCntAll() {
+	public int selectCntAll(String search) {
 		conn = DBConn.getConnection(); // DB연결
 
+		
+		
 		// 수행할 SQL 쿼리
 		String sql = "";
-		sql += "SELECT count(*)";
-		sql += " FROM board";
+		if(search != null) {
+			sql += "SELECT count(*)";
+			sql += " FROM board";
+			sql += " WHERE title Like ?";
+		}else {
+			sql += "SELECT count(*)";
+			sql += " FROM board";
+		}
+		
 		
 		
 		// 최종 결과 변수
 		int cnt = 0;
 		
 		try {
-			ps = conn.prepareStatement(sql); // 수행 객체 얻기
+			if(search!=null) {
+				ps = conn.prepareStatement(sql); // 수행 객체 얻기
+				ps.setString(1,  "%" + search + "%");
+				rs = ps.executeQuery(); // SQL 수행 결과 얻기
+			}else {
+				ps = conn.prepareStatement(sql); // 수행 객체 얻기
+				
+				rs = ps.executeQuery(); // SQL 수행 결과 얻기
+			}
 			
-			rs = ps.executeQuery(); // SQL 수행 결과 얻기
 
 			// SQL 수행결과 처리
 			while (rs.next()) {
@@ -182,26 +199,32 @@ public class BoardDaoImpl implements BoardDao{
 
 		// 수행할 SQL 쿼리
 		String sql = "";
-		sql += "SELECT * FROM("  ;
-		sql += " SELECT rownum rnum, B.* FROM(" ;
-		sql +=	" SELECT " ; 
-		sql +=	" boardno, title, id, content, hit, writtendate" ;
-		sql +=	" FROM board"; 
-		sql +=	" ORDER BY boardno DESC" ;
-		sql +=	" ) B"  ;
-		sql +=	" ORDER BY rnum" ;
-		sql +=	" ) BOARD" ;
-		sql +=	" WHERE rnum BETWEEN ? AND ? ";
+
+	      sql += "select * from(";
+	      sql += " select rownum rnum, B.* FROM(";
+	      sql += " select boardno, title, id, content, hit, writtendate from board";
+	      if( paging.getSearch() != null && !"".equals(paging.getSearch()) ) {
+	         sql += " where title LIKE '%'||'"+paging.getSearch()+"'||'%'";
+	      }
+	      sql += " order by boardno desc";
+	      sql += " )B";
+	      sql += " ORDER BY rnum";
+	      sql += " )BOARD";
+	      sql += " WHERE rnum BETWEEN ? AND ?";
 
 
 		// 최종 결과 변수
 		List list = new ArrayList();
 		
 		try {
-			ps = conn.prepareStatement(sql); // 수행 객체 얻기
 			
-			ps.setInt(1,  paging.getStartNo());
-			ps.setInt(2,  paging.getEndNo());
+				ps = conn.prepareStatement(sql); // 수행 객체 얻기
+				
+				ps.setInt(1,  paging.getStartNo());
+				ps.setInt(2,  paging.getEndNo());
+			
+		
+			
 			
 			rs = ps.executeQuery(); // SQL 수행 결과 얻기
 

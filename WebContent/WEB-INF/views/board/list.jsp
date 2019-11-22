@@ -19,7 +19,7 @@ $(document).ready(function() {
 		location.href = "/board/write";
 	});
 	
-	$("#main").click(function() {
+	$("#btnMain").click(function() {
 		location.href = "/main";
 	});
 });
@@ -56,31 +56,52 @@ tr td:not(:first-child), tr th:not(:first-child){
 	border-left : 3px solid white;
 }
 
-#main{
+#btnMain{
  text-align: right;
 }
-#btnWrite{
- text-align: right;
- margin-bottom: 20px; ;
 
- 
-}
 #btnChkDelete{
 
  text-align: left;
  margin-bottom: 20px; ;
  
 }
-
-
+.form-control{
+	width : 40%;
+	
+}
+/* #search{ */
+/* 	style: padding-left; */
+/* } */
 
 </style>
 
 <div class ="container">
 
-<h1>게시판 <small>ㅎ ㅎ ㅎ </small></h1> 
-<div  class="text-right" ><button id = "main" class="btn btn-default">메인</button></div>
-<hr>
+<h1>게시판 <small>ㅎ ㅎ ㅎ </small></h1>
+
+
+	<form action = "/board/list" method = "get">
+	<div class=" text-right m-5">
+		<input type="text" class="form-control" id="search" name="search"
+			 style="padding-left:80px; width:350px; font-size:13px; height:20px; 
+			 padding:15px; margin : auto 275px auto auto;"
+			 placeholder="검색어 입력" />
+		<button id="btnSearch" name = "search" class="btn btn-default"
+		style = "margin : auto 217px auto auto" >검색</button>
+		<%-- 
+		<input type="text" class="form-control" id="search" name="search"
+			 style="padding-left:80px; width:350px; font-size:13px; height:20px; 
+			 padding:15px; margin : auto 275px auto auto;"
+			 placeholder="검색어 입력" />
+		<button id="btnSearch" name = "search" class="btn btn-default"
+		style = "margin : auto 217px auto auto" >검색</button>
+		--%>
+	</div>
+	</form>
+		<button id="btnMain" class="btn btn-default">메인</button>
+		<button id="btnWrite" class="btn btn-default text-right">글쓰기</button>
+	<hr>
 
 
 <form  action = "/board/listDelete" method = "post">
@@ -110,11 +131,14 @@ tr td:not(:first-child), tr th:not(:first-child){
 </c:forEach>
 
 </table>
-<button  id = "btnChkDelete" class="btn btn-default">체크 삭제</button>
+<div>
+	<button  id = "btnChkDelete" class="btn btn-default">체크 삭제</button>
+	
+</div>
+
 </form>
 <jsp:include page = "/WEB-INF/views/layout/paging.jsp" />
 
-<button id = "btnWrite" class="btn btn-default" >글쓰기</button>
 
 </div><!--  .container -->
 
