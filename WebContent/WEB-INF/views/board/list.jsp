@@ -81,26 +81,19 @@ tr td:not(:first-child), tr th:not(:first-child){
 <h1>게시판 <small>ㅎ ㅎ ㅎ </small></h1>
 
 
-	<form action = "/board/list" method = "get">
-	<div class=" text-right m-5">
-		<input type="text" class="form-control" id="search" name="search"
+	<div class=" text-right">
+	<form action = "/board/list" method = "get" style = "margin-bottom : -34px">
+		<input type="text"  id="search" name="search"
 			 style="padding-left:80px; width:350px; font-size:13px; height:20px; 
-			 padding:15px; margin : auto 275px auto auto;"
+			 padding:15px; margin : auto 0px auto auto;"
 			 placeholder="검색어 입력" />
 		<button id="btnSearch" name = "search" class="btn btn-default"
-		style = "margin : auto 217px auto auto" >검색</button>
-		<%-- 
-		<input type="text" class="form-control" id="search" name="search"
-			 style="padding-left:80px; width:350px; font-size:13px; height:20px; 
-			 padding:15px; margin : auto 275px auto auto;"
-			 placeholder="검색어 입력" />
-		<button id="btnSearch" name = "search" class="btn btn-default"
-		style = "margin : auto 217px auto auto" >검색</button>
-		--%>
-	</div>
+		style = "margin : auto 450px auto auto" >검색</button>
+		
 	</form>
 		<button id="btnMain" class="btn btn-default">메인</button>
 		<button id="btnWrite" class="btn btn-default text-right">글쓰기</button>
+	</div>
 	<hr>
 
 
