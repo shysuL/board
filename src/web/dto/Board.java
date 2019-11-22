@@ -9,6 +9,10 @@ public class Board {
 	private String content;
 	private int hit;
 	private Date writtendate;
+	
+	private int recommend;
+	
+	
 	@Override
 	public String toString() {
 		return "Board [boardno=" + boardno + ", title=" + title + ", id=" + id + ", content=" + content + ", hit=" + hit
@@ -49,6 +53,12 @@ public class Board {
 	}
 	public void setWrittendate(Date writtendate) {
 		this.writtendate = writtendate;
+	}
+	public int getRecommend() {
+		return recommend;
+	}
+	public void setRecommend(int recommend) {
+		this.recommend = recommend;
 	}
 	
 	

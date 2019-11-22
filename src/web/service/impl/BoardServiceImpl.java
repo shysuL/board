@@ -22,17 +22,25 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import util.Paging;
 import web.dao.face.BoardDao;
 import web.dao.face.BoardFileDao;
+import web.dao.face.CommentDao;
+import web.dao.face.RecommendDao;
 import web.dao.impl.BoardDaoImpl;
 import web.dao.impl.BoardFileDaoImpl;
+import web.dao.impl.CommentDaoImpl;
+import web.dao.impl.RecommendDaoImpl;
 import web.dto.Board;
 import web.dto.Boardfile;
+import web.dto.Recommend;
 import web.service.face.BoardService;
+import web.dto.Comment;
 
 public class BoardServiceImpl implements BoardService{
 
 	BoardDao boardDao = new BoardDaoImpl();
 	Boardfile boardfile = new Boardfile();
 	BoardFileDao boardfileDao = new BoardFileDaoImpl();
+	RecommendDao recommendDao = new RecommendDaoImpl();
+	CommentDao commentDao = new CommentDaoImpl();
 	
 	
 	@Override
@@ -696,9 +704,94 @@ public class BoardServiceImpl implements BoardService{
 		
 	}
 	@Override
-	public void recommend(Board recommendBoard) {
+	public boolean isRecommend(Recommend recommend) {
+		int cnt = recommendDao.selectCntRecommend(recommend);
 		
+		if(cnt > 0) { //추천했음
+			return true;
+			
+		} else { //추천하지 않았음
+			return false;
+			
+		}
 	}
+	
+	@Override
+	public Recommend getRecommend(HttpServletRequest req) {
+		//전달파라미터 파싱
+		int boardno = 0;
+		String param = req.getParameter("boardno");
+		if( param!=null && !"".equals(param) ) {
+			boardno = Integer.parseInt(param);
+		}
+
+		//로그인한 아이디
+		String userid = (String) req.getSession().getAttribute("userid");
+
+		Recommend recommend = new Recommend();
+		recommend.setBoardno(boardno);
+		recommend.setUserid(userid);
+
+		return recommend;
+	}
+	@Override
+	public boolean recommend(Recommend recommend) {
+		if( isRecommend(recommend) ) { //추천한 상태
+			recommendDao.deleteRecommend(recommend);
+			
+			return false;
+			
+		} else { //추천하지 않은 상태
+			recommendDao.insertRecommend(recommend);
+			
+			return true;
+			
+		}
+	}
+	@Override
+	public int getTotalCntRecommend(Recommend recommend) {
+		return recommendDao.selectTotalCntRecommend(recommend);
+	}
+	@Override
+	public Comment getComment(HttpServletRequest req) {
+		try {
+			req.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		String boardNo = (String) req.getParameter("boardno");
+		String userid = (String) req.getParameter("userid");
+		String content = (String) req.getParameter("content");
+		
+		Comment comment = new Comment();
+		comment.setBoardNo(Integer.parseInt(boardNo));
+		comment.setUserid(userid);
+		comment.setContent(content);
+		
+		return comment;
+	}
+	@Override
+	public void insertComment(Comment comment) {
+		commentDao.insertComment(comment);
+	}
+	@Override
+	public List getCommentList(Board board) {
+		return commentDao.selectComment(board);
+	}
+	@Override
+	public boolean deleteComment(Comment comment) {
+		commentDao.deleteComment(comment); 
+		
+		if( commentDao.countComment(comment) > 0 ) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	
+	
 		
 	
 	

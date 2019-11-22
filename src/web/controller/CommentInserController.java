@@ -8,33 +8,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import web.dto.Recommend;
+import web.dto.Comment;
 import web.service.face.BoardService;
 import web.service.impl.BoardServiceImpl;
 
 
-
-@WebServlet("/board/recommend")
-public class BoardRecommendController extends HttpServlet {
+@WebServlet("/comment/insert")
+public class CommentInserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	private BoardService boardService = new BoardServiceImpl();
-	
-	@Override
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
+
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		Comment comment = boardService.getComment(req);
 		
-		//추천 정보 얻기
-				Recommend recommendParam = boardService.getRecommend(req);
-				
-				//추천 정보 토글
-				boolean result = boardService.recommend(recommendParam);
-				
-				//추천 수 조회
-				int cnt = boardService.getTotalCntRecommend(recommendParam);
-				
-				//결과 JSON응답
-				resp.getWriter().println("{\"result\": "+result+", \"cnt\": "+cnt+"}");
+		boardService.insertComment(comment);
 		
-		
-		
+		resp.sendRedirect("/board/view?boardno="+comment.getBoardNo());
 	}
 }
